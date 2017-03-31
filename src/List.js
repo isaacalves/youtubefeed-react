@@ -1,5 +1,5 @@
 import React from 'react';
-import ListItem from './ListItem.jsx';
+import ListItem from './ListItem';
 
 export default class List extends React.Component {
   render() {
@@ -12,6 +12,7 @@ export default class List extends React.Component {
 					thumbnail={item.snippet.thumbnails.medium.url}
 					publishedAt={item.snippet.publishedAt}
 					description={item.snippet.description}
+					videoId={item.contentDetails.videoId}
 				/>
      		))}
     	</div>

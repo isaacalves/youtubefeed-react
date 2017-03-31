@@ -2,9 +2,27 @@
 
 ## todo
 
-* router
+* video
 * sass
 * styles
+
+## todo later
+
+* url params in detail page instead of sending props as state? 
+
+## refs
+
+* wireframes: http://m5sdq6.axshare.com/#p=02_detail_-_tablet__768px_and_above_
+* feed url: https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails,status&maxResults=10&playlistId=PLSi28iDfECJPJYFA4wjlF5KUucFvc0qbQ&key=AIzaSyCuv_16onZRx3qHDStC-FUp__A6si-fStw
+
+## res
+
+* react router
+  * https://reacttraining.com/react-router/
+  * https://scotch.io/tutorials/routing-react-apps-the-complete-guide
+* video
+  * https://github.com/pedronauck/react-video
+  
 
 ---
 
