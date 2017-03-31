@@ -2,7 +2,6 @@
 
 ## todo
 
-* video
 * sass
 * styles
 
@@ -21,7 +20,7 @@
   * https://reacttraining.com/react-router/
   * https://scotch.io/tutorials/routing-react-apps-the-complete-guide
 * video
-  * https://github.com/pedronauck/react-video
+  * https://github.com/troybetz/react-youtube
   
 
 ---
