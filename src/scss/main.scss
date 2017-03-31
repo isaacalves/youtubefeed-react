@@ -1,0 +1,8 @@
+$icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
+
+// variables
+$brand-primary:     #2d1a3b;
+
+// bootstrap
+@import "variables";
+@import "../../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
