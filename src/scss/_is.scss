@@ -1,0 +1,11 @@
+// Intermediate small screen / phone. (Custom breakpoint).
+$screen-is: 480px;
+
+// Minimum screen size for the custom grid.
+$screen-is-min: ($screen-is);
+
+// Maximum screen size for the custom grid.
+$screen-is-max: 767px;
+
+// Maximum screen size for Extra small screen / phone (We have to call it before bootstrap).
+$screen-xs-max: ($screen-is-min - 1);

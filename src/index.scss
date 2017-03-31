@@ -1,15 +1,107 @@
-// body {
-//   margin: 0;
-//   padding: 0;
-//   font-family: sans-serif;
-// }
-
 $icon-font-path: '../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
 
 // variables
-$brand-primary:     #2d1a3b;
+$brand-primary:     #dd99aa;
+
+// breakpoints (according to wireframes)
+$small-breakpoint: 	480px;
+$medium-breakpoint: 768px;
+
+// custom breakpoint (intermediate small)
+// @import "scss/is";
 
 // bootstrap
 @import "scss/variables";
 @import "../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 
+.row.no-gutter > [class*='col-'] {
+    padding-right:0;
+    padding-left:0;
+}
+
+// Header
+.navbar-header {
+	float: none;
+
+	.header-brand {
+		padding: 15px 15px;
+	    font-size: 18px;
+	    line-height: 20px;
+	    height: 50px;
+	    color: $brand-primary;
+	}
+}
+
+// List
+.list-group {
+	max-width: 360px;
+	margin: 0 auto;
+	
+	@media (min-width: $screen-sm-min){
+		max-width: 768px;
+	}
+
+	.list-group-item {
+		overflow: auto;
+	  	padding: 15px;
+	  	margin: 0 auto 15px;
+	  	
+        &--thumbnail {
+        	float: left;
+        	max-width: 100%;
+        	// max-width: 320px; // youtube snippet thumbnail medium width
+        	// max-width: 480px; // youtube snippet thumbnail high width
+        	// height: 180px;
+			// margin-right: 10px;
+			margin-bottom: 0;
+			padding: 0;
+			border: 0;
+
+        	img {
+        		max-width: 100%;
+        	}
+        }
+        
+        &--info {
+			
+			@media (min-width: $screen-sm-min){
+				margin-left: 15px;
+			}
+
+	     	h1.title {
+	     		font-size: 2rem;
+	        	font-weight: 700;
+	        	margin-top: 0;
+	        	margin-bottom: 15px;
+
+	        	overflow: hidden;
+			    text-overflow: ellipsis;
+			    display: -webkit-box;
+			    -webkit-box-orient: vertical;
+			    -webkit-line-clamp: 2;
+
+			    @media (min-width: $screen-sm-min){
+					font-size: 2.5rem;
+				}
+	     	}
+			
+			.date {
+				margin-bottom: 15px;
+			}
+
+	     	.description {
+	     		margin-bottom: 15px;
+
+	     		overflow: hidden;
+			    text-overflow: ellipsis;
+			    display: -webkit-box;
+			    -webkit-box-orient: vertical;
+			    -webkit-line-clamp: 5;
+
+	        	@media (max-width: $screen-xs-max){
+	        		display: none;
+	    		}
+	     	}
+        }
+ 	}
+}

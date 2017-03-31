@@ -2,13 +2,15 @@
 
 ## todo
 
-* sass
-* styles
+* bug when loading detail page
+* detail page styles
+* organize styles
+* refactor
 
 ## todo later
 
 * url params in detail page instead of sending props as state? 
-* component based css approach?
+* component based css approach (other than using bootstrap-sass)?
   * https://www.smashingmagazine.com/2017/01/styled-components-enforcing-best-practices-component-based-systems/
   * http://cssinjs.org/?v=v6.5.0
   * https://github.com/cssinjs/jss

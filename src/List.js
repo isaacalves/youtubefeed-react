@@ -9,7 +9,7 @@ export default class List extends React.Component {
 				<ListItem
 					key={i}
 					title={item.snippet.title}
-					thumbnail={item.snippet.thumbnails.medium.url}
+					thumbnail={item.snippet.thumbnails.high.url}
 					publishedAt={item.snippet.publishedAt}
 					description={item.snippet.description}
 					videoId={item.contentDetails.videoId}

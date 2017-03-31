@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Header from './Header';
 import List from './List';
 import DetailPage from './DetailPage';
-import './App.css';
 
 class App extends Component {
   constructor() {
@@ -31,11 +31,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <div className="App-header">
-            <h1>My YouTube Playlist</h1>
-
-          </div>
-          
+          <Header />
           <Route
             exact path="/"
             render={() => (
@@ -48,7 +44,6 @@ class App extends Component {
             path="/detail"
             component={DetailPage}
           />
-
         </div>
       </Router>
     );
