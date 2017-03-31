@@ -1,15 +1,8 @@
 .App {
-  text-align: center;
-}
+  text-align: center; }
 
 .App-header {
   background-color: #222;
   height: 70px;
   padding: 20px;
-  color: white;
-}
-
-ul.main-nav {
-  list-style-type: none;
-  padding: 0;
-}
+  color: white; }
