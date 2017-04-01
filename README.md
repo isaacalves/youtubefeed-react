@@ -3,9 +3,10 @@
 ## todo
 
 * bug when loading detail page
-* detail page styles
-* organize styles
-* refactor
+* redirect detail page to list if no location
+* a header for each view
+* add hover effects to list thumbnail
+* test in browsers
 
 ## todo later
 

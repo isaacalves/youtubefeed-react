@@ -1055,7 +1055,7 @@ html {
   -webkit-tap-highlight-color: transparent; }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Montserrat", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.66;
   color: #333333;
@@ -5539,7 +5539,7 @@ button.close {
   position: absolute;
   z-index: 1070;
   display: block;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Montserrat", Helvetica, Arial, sans-serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -5657,7 +5657,7 @@ button.close {
   display: none;
   max-width: 276px;
   padding: 1px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Montserrat", Helvetica, Arial, sans-serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -6208,6 +6208,17 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
+.responsive-embed-youtube {
+  position: relative;
+  padding-bottom: 56.25%;
+  /* 16:9 Aspect Ratio */
+  margin-bottom: 15px; }
+
+.responsive-embed-youtube iframe {
+  position: absolute;
+  width: 100% !important;
+  height: 100% !important; }
+
 .row.no-gutter > [class*='col-'] {
   padding-right: 0;
   padding-left: 0; }
@@ -6219,16 +6230,29 @@ button.close {
   padding: 15px 15px;
   font-size: 18px;
   line-height: 20px;
-  height: 50px;
-  color: #dd99aa; }
+  height: 50px; }
 
-.list-group {
-  max-width: 360px;
-  margin: 0 auto; }
+.navbar-header .header-brand,
+.navbar-header .header-brand :hover,
+.navbar-header .header-brand :focus,
+.navbar-header .header-brand :active {
+  color: #dd99aa;
+  text-decoration: none; }
+
+.page .page-content {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 0 15px; }
 
 @media (min-width: 768px) {
-  .list-group {
+  .page .page-content {
     max-width: 768px; } }
+
+.page.detail-page .page-content {
+  padding-bottom: 15px; }
+
+.page.detail-page h1.title {
+  font-weight: 700; }
 
 .list-group .list-group-item {
   overflow: auto;
@@ -6253,7 +6277,7 @@ button.close {
   font-size: 2rem;
   font-weight: 700;
   margin-top: 0;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -6265,10 +6289,11 @@ button.close {
     font-size: 2.5rem; } }
 
 .list-group .list-group-item--info .date {
-  margin-bottom: 15px; }
+  margin-bottom: 25px;
+  font-weight: 700; }
 
 .list-group .list-group-item--info .description {
-  margin-bottom: 15px;
+  margin-bottom: 25px;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;

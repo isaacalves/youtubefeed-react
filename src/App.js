@@ -55,6 +55,7 @@ class App extends Component {
           <Route
             path="/detail"
             component={DetailPage}
+            className='detail-page'
           />
         </div>
       </Router>

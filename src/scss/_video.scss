@@ -1,0 +1,12 @@
+.responsive-embed-youtube {
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+	// padding-top: 25px;
+	margin-bottom: $grid-gutter-width/2;
+
+	& iframe {
+		position: absolute;
+		width: 100%!important;
+		height: 100%!important;
+	}
+}
