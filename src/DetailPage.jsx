@@ -13,7 +13,7 @@ export default class DetailPage extends Component {
         <Link to='/'>Back</Link>
         <div className='item-detail'>
           <h1 className='title'>{videoProps.title}</h1>          
-          <YouTube videoId={videoProps.videoId} ></YouTube>
+          <YouTube videoId={videoProps.id} ></YouTube>
           <div className='date'>{videoProps.publishedAt}</div>
           <div className='description'>{videoProps.description}</div>
         </div>

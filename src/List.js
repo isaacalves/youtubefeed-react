@@ -8,11 +8,11 @@ export default class List extends React.Component {
      		{this.props.items.map((item, i) => (
 				<ListItem
 					key={i}
-					title={item.snippet.title}
-					thumbnail={item.snippet.thumbnails.high.url}
-					publishedAt={item.snippet.publishedAt}
-					description={item.snippet.description}
-					videoId={item.contentDetails.videoId}
+					title={item.title}
+					thumbnail={item.thumbnail}
+					date={item.date}
+					description={item.description}
+					id={item.id}
 				/>
      		))}
     	</div>

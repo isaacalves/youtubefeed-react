@@ -3,11 +3,6 @@ import { Link } from 'react-router-dom'
 
 export default class ListItem extends React.Component {
 	
-	formatDate(date) {
-		//return new Date(date).toISOString().slice(0,10).replace(/-/g,"")
-		return date;
-	}
-
   render() {  	
     return (
   		<div className='list-group-item'>
@@ -19,7 +14,7 @@ export default class ListItem extends React.Component {
 	  						<Link to="/detail">
 				  				<h1 className='title'>{this.props.title}</h1>
 				  			</Link>
-				  			<div className='date'>{ this.formatDate(this.props.publishedAt) }</div>
+				  			<div className='date'>Published on { this.props.date }</div>
 				  			<div className='description'>{this.props.description}</div>
 				  		</div>
 			  		</div>

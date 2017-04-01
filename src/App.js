@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from './Header';
 import List from './List';
 import DetailPage from './DetailPage';
+import moment from 'moment';
+
+moment.locale('en');
 
 class App extends Component {
   constructor() {
@@ -18,7 +21,16 @@ class App extends Component {
       .then(response => response.json())
       .then(data => {
         // console.log(data.items);
-        this.setState({ items: data.items });
+        
+        let items = data.items.map((item) => ({
+          date: moment( item.snippet.publishedAt ).format("MMM Do, YYYY"),
+          description: item.snippet.description,
+          id: item.contentDetails.videoId,
+          thumbnail: item.snippet.thumbnails.high.url,
+          title: item.snippet.title,
+        }));
+
+        this.setState({ items: items });
       })
       .catch(err => console.error(this.props.url, err.toString()))
   }
