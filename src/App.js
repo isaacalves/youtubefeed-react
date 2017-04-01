@@ -41,22 +41,46 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
+      <Router
+        basename="/ytf"
+      >
         <div className="App">
+          
           <Header />
+
           <Route
             exact path="/"
             render={() => (
-                <List items={this.state.items}>
-                </List>
+                <div className='page list-page'>
+                  <div className='page-content'>
+                    <List items={this.state.items}>
+                    </List>
+                  </div>
+                </div>
               )
             }
           />
+          
           <Route
-            path="/detail"
+            path="/detail/:id"
+            
+            // method 1
+            // passes items : NO
+            // acces to location (and item id) on detail page : YES
             component={DetailPage}
-            className='detail-page'
+            
+            // method 2
+            // passes items : YES
+            // acces to location (and item id) on detail page : NO
+            // component={() => (
+            //   <DetailPage items={this.state.items}>
+            //   </DetailPage>
+            // )}
+            
+            // thid doesn't work.
+            items={this.state.items}
           />
+
         </div>
       </Router>
     );

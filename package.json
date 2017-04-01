@@ -20,6 +20,8 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "build-css": "node-sass src/ -o src/",
-    "watch-css": "npm run build-css && node-sass src/ -o src/ --watch --recursive"
-  }
+    "watch-css": "npm run build-css && node-sass src/ -o src/ --watch --recursive",
+    "deploy-zac": "rsync -razP --exclude='node_modules' --exclude='.git' ./build/. root@104.131.16.158:../var/www/zacalves.com/stage/ytf/"
+  },
+  "homepage": "http://stage.zacalves.com/ytf"
 }

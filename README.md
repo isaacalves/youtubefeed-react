@@ -2,14 +2,17 @@
 
 ## todo
 
-* bug when loading detail page
-* redirect detail page to list if no location
-* a header for each view
+* better implementation for router and detail page
+  * redirect detail page to list if no location
 * add hover effects to list thumbnail
 * test in browsers
+* setup build
+* deploy
 
 ## todo later
 
+* refactor css
+* a header for each view
 * url params in detail page instead of sending props as state? 
 * component based css approach (other than using bootstrap-sass)?
   * https://www.smashingmagazine.com/2017/01/styled-components-enforcing-best-practices-component-based-systems/

@@ -2,8 +2,11 @@
 	position: relative;
 	padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
 	// padding-top: 25px;
+	margin-top: $grid-gutter-width/2;
 	margin-bottom: $grid-gutter-width/2;
 
+	background-color: $gray-lighter;
+	
 	& iframe {
 		position: absolute;
 		width: 100%!important;

@@ -13,8 +13,11 @@ $medium-breakpoint: 768px;
 // bootstrap
 @import "scss/variables";
 @import "../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
-
 @import "scss/video";
+
+.strong {
+	font-weight: 700;
+}
 
 .row.no-gutter > [class*='col-'] {
     padding-right:0;
@@ -119,7 +122,7 @@ $medium-breakpoint: 768px;
 			
 			.date {
 				margin-bottom: $mb;
-				font-weight: 700;
+				// font-weight: 700;
 			}
 
      	.description {
