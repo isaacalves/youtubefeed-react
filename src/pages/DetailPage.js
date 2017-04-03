@@ -3,54 +3,61 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import YouTube from 'react-youtube';
 
-
-//<Video from='youtube' videoId={videoId} />
 export default class DetailPage extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {}; //?
+    this.state = {
+      date: '',
+      description: '',
+      id: '',
+      slug: '',
+      title: '',
+    };
+  }
+
+  componentWillMount() {
+    // console.log('componentWillMount');
+    // console.log(this.props);
+
+    // if navigation directly (there will be no state), go to home
+    if (this.props.location.state === undefined){
+      this.props.history.replace('/');
+    }
+  }
+
+  componentDidMount() {
+    //console.log('componentDidMount');
+
+    if (this.props.location.state !== undefined){
+      let { title, date, id, description } = this.props.location.state.videoProps;
+
+      this.setState({
+        date: date,
+        description: description,
+        id: id,
+        title: title,
+      })
+    }else{
+      // need to access parent's items
+      console.log('no location');
+      console.log('this.props.test: ', this.props.test);
+    }
   }
 
   render() {
-    // this won't work: because render must return something. also too imperative? 
-    // if (this.props.location.state === undefined){
-    //   console.log('undef');
-    //   // browserHistory.push('/');
-    //   this.props.history.push('/');
-    //   return;
-    // }
-
-    // if navigatin from URL directly, there won't be location and this will error
-    const { videoProps } = this.props.location.state;
-    
-    // https://github.com/troybetz/react-youtube
     const videoOptions = {
       playerVars: { // https://developers.google.com/youtube/player_parameters
         autoplay: 0
       }
     }
 
-    // let videoProps = {
-    //   title: 'a',
-    //   id: 'a',
-    //   publishedAt: 'a',
-    //   description: 'a',
-    // }
-
-    // this works...
-    // let s = this.props.location.pathname;
-    // const id = s.substr(s.lastIndexOf('/') + 1);
+    const slug = this.props.match.params.slug;
+    // console.log(slug);
     
-    // but this is better:
-    // const id = this.props.match.params.id;
-    // ...but this doesn't work if using an anonymous wrapper on the detail Route in App
+    // console.log('this.props: ', this.props);
+    console.log('this.props: ', this.props);
 
-    // jesus...
-
-    // console.log(id);
-
-    console.log(this.props);
     //console.log(this.props.route); //why not
     
     // obs: this view gets rendered twice if loaded directly from the url (once again after data is fetched)
@@ -61,23 +68,23 @@ export default class DetailPage extends Component {
       <div className='page detail-page'>
         <div className='page-content'>
           <div className='container-fluid'>
-            <Link to='/'>Back</Link>
+            <Link to='/'>&larr; Back to list of videos</Link>
             <div className='item-detail'>
               <div className='row'>
                 <div className='col-xs-12'>
-                  <h1 className='title'>{videoProps.title}</h1>          
-                  <div className='date strong'>{videoProps.date}</div>
+                  <h1 className='title'>{this.state.title}</h1>          
+                  <div className='date strong'>Published on {this.state.date}</div>
                 </div>
                 <div className='col-xs-12'>
                   <div className='responsive-embed-youtube'>
                     <YouTube
-                      videoId={videoProps.id}
+                      videoId={this.state.id}
                       opts={videoOptions}
                     ></YouTube>
                   </div>
                 </div>
                 <div className='col-xs-12'>
-                  <div className='description'>{videoProps.description}</div>
+                  <div className='description'>{this.state.description}</div>
                 </div>
               </div>
             </div>

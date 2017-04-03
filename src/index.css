@@ -5833,20 +5833,6 @@ button.close {
   padding-right: 0;
   padding-left: 0; }
 
-.navbar-header {
-  float: none; }
-  .navbar-header .header-brand {
-    padding: 15px 15px;
-    font-size: 18px;
-    line-height: 20px;
-    height: 50px; }
-    .navbar-header .header-brand,
-    .navbar-header .header-brand :hover,
-    .navbar-header .header-brand :focus,
-    .navbar-header .header-brand :active {
-      color: #dd99aa;
-      text-decoration: none; }
-
 .page .page-content {
   max-width: 480px;
   margin: 0 auto;
@@ -5861,10 +5847,26 @@ button.close {
 .page.detail-page h1.title {
   font-weight: 700; }
 
+.navbar-header {
+  float: none; }
+  .navbar-header .header-brand {
+    padding: 15px 15px;
+    font-size: 18px;
+    line-height: 20px;
+    height: 50px; }
+    .navbar-header .header-brand,
+    .navbar-header .header-brand :hover,
+    .navbar-header .header-brand :focus,
+    .navbar-header .header-brand :active {
+      color: #dd99aa;
+      text-decoration: none; }
+
 .list-group .list-group-item {
   overflow: auto;
   padding: 15px;
-  margin: 0 auto 15px; }
+  margin: 0 auto 0; }
+  .list-group .list-group-item:not(:last-child) {
+    border-bottom: none; }
   .list-group .list-group-item--thumbnail {
     float: left;
     max-width: 100%;

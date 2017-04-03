@@ -1,0 +1,21 @@
+$icon-font-path: '../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
+//relative to the CSS file 
+
+// variables
+$brand-primary: #dd99aa;
+
+// breakpoints (according to wireframes)
+$small-breakpoint: 	480px;
+$medium-breakpoint: 768px;
+
+// custom breakpoint (intermediate small)
+// @import "scss/is";
+
+// bootstrap
+@import "scss/variables";
+@import "../../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+@import "scss/video";
+
+@import 'global';
+@import 'pages';
+@import 'components';

@@ -2,8 +2,7 @@
 
 ## todo
 
-* better implementation for router and detail page
-  * redirect detail page to list if no location
+* pass props to child
 * add hover effects to list thumbnail
 * test in browsers
 * setup build

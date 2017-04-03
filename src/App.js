@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Header from './Header';
-import List from './List';
-import DetailPage from './DetailPage';
 import moment from 'moment';
+
+//components
+// import Header from './components/Header';
+// import List from './components/List';
+
+//pages
+import Layout from './pages/Layout';
+import DetailPage from './pages/DetailPage';
+import ListPage from './pages/ListPage';
 
 moment.locale('en');
 
@@ -12,7 +18,9 @@ class App extends Component {
     super();
 
     this.state = {
-      items: []
+      items: [],
+      //currentItemId ?
+      //currentItem object (with all props) ?
     };
   }
 
@@ -28,11 +36,31 @@ class App extends Component {
           id: item.contentDetails.videoId,
           thumbnail: item.snippet.thumbnails.high.url,
           title: item.snippet.title,
+          slug: this.generateSlug(item.snippet.title)
         }));
 
         this.setState({ items: items });
       })
       .catch(err => console.error(this.props.url, err.toString()))
+  }
+
+  generateSlug(title) {
+    let newTitle = title
+      /* Remove unwanted characters, only accept alphanumeric and space */
+      .replace(/[^A-Za-z0-9 ]/g,'')
+      /* Replace multi spaces with a single space */
+      .replace(/\s{2,}/g,' ')
+      /* Replace space with a '-' symbol */
+      .replace(/\s/g, "-")
+      .toLowerCase();
+    return newTitle;
+    // consider this: https://pid.github.io/speakingurl/
+  }
+
+  getItemBySlug(slug) {
+    console.log('getItemBySlug');
+    // could be used from detail page can retrieve the item
+    // console.log('getItemBySlug: ', slug);
   }
 
   componentDidMount() { 
@@ -41,32 +69,31 @@ class App extends Component {
 
   render() {
     return (
-      <Router
-        basename="/ytf"
-      >
-        <div className="App">
-          
-          <Header />
-
+      <Router basename='/ytf'>
+        <Layout>
           <Route
             exact path="/"
+            // render={() => (
+            //     <div className='page list-page'>
+            //       <div className='page-content'>
+            //         <List items={this.props.items}>
+            //         </List>
+            //       </div>
+            //     </div>
+            //   )
+            // }
             render={() => (
-                <div className='page list-page'>
-                  <div className='page-content'>
-                    <List items={this.state.items}>
-                    </List>
-                  </div>
-                </div>
+                <ListPage items={this.state.items}>
+                </ListPage>
               )
             }
           />
-          
           <Route
-            path="/detail/:id"
+            path='/detail/:slug'
             
             // method 1
             // passes items : NO
-            // acces to location (and item id) on detail page : YES
+            // access to location (and item id) on detail page : YES
             component={DetailPage}
             
             // method 2
@@ -77,11 +104,20 @@ class App extends Component {
             //   </DetailPage>
             // )}
             
-            // thid doesn't work.
-            items={this.state.items}
-          />
+            // method 3
+            // this is not accessible on DetailPage via this.props.route.test 
+            // because this.props.route is undefined
+            test='xxx'
 
-        </div>
+            // method 4
+            render={() => (
+                <DetailPage test='foo'>
+                </DetailPage>
+              )
+            }
+
+          />
+        </Layout>
       </Router>
     );
   }

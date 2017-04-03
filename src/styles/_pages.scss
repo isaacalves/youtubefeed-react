@@ -1,0 +1,27 @@
+.page {
+
+	.page-content {
+		max-width: 480px;
+		margin: 0 auto;
+		padding: 0 $grid-gutter-width/2;
+		
+		@media (min-width: $screen-sm-min){
+			max-width: 768px;
+		}
+	}
+
+	&.list-page {
+		
+	}
+
+	&.detail-page {
+
+		.page-content {
+			padding-bottom: $grid-gutter-width/2;
+		}
+
+		h1.title {
+			font-weight: 700;
+		}
+	}
+}

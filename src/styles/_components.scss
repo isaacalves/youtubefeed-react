@@ -1,29 +1,3 @@
-$icon-font-path: '../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
-
-// variables
-$brand-primary:     #dd99aa;
-
-// breakpoints (according to wireframes)
-$small-breakpoint: 	480px;
-$medium-breakpoint: 768px;
-
-// custom breakpoint (intermediate small)
-// @import "scss/is";
-
-// bootstrap
-@import "scss/variables";
-@import "../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
-@import "scss/video";
-
-.strong {
-	font-weight: 700;
-}
-
-.row.no-gutter > [class*='col-'] {
-    padding-right:0;
-    padding-left:0;
-}
-
 // Header
 .navbar-header {
 	float: none;
@@ -44,45 +18,20 @@ $medium-breakpoint: 768px;
 	}
 }
 
-// Pages
-.page {
-
-	.page-content {
-		max-width: 480px;
-		margin: 0 auto;
-		padding: 0 $grid-gutter-width/2;
-		// background-color: yellow;
-		
-		@media (min-width: $screen-sm-min){
-			max-width: 768px;
-		}
-	}
-
-	&.list-page {
-		
-	}
-
-	&.detail-page {
-
-		.page-content {
-			padding-bottom: $grid-gutter-width/2;
-		}
-
-		h1.title {
-			font-weight: 700;
-		}
-	}
-}
-
-// List Page
-
+// List
 .list-group {
 	$mb: 25px;
 
 	.list-group-item {
 		overflow: auto;
   	padding: 15px;
-  	margin: 0 auto 15px;
+  	margin: 0 auto 0;
+  	
+  	// border: none;
+  	
+  	&:not(:last-child) {
+  		border-bottom: none;
+  	}
   	
     &--thumbnail {
 
@@ -100,7 +49,7 @@ $medium-breakpoint: 768px;
     &--info {
 			
 			@media (min-width: $screen-sm-min){
-				margin-left: 15px;
+				margin-left: $grid-gutter-width/2;
 			}
 
      	h1.title {
