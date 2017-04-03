@@ -23,3 +23,20 @@ export default class Layout extends Component {
     )
   }
 }
+
+// how to handle children here?
+// const Layout = () => {
+//   return (
+//     <div>
+//       <Header>
+//       </Header>
+      
+//       {this.props.children}
+
+//       <Footer>
+//       </Footer>
+//     </div>
+//   )
+// }
+
+// export default Layout;

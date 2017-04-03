@@ -18,9 +18,7 @@ class App extends Component {
     super();
 
     this.state = {
-      items: [],
-      //currentItemId ?
-      //currentItem object (with all props) ?
+      items: null,
     };
   }
 
@@ -45,6 +43,7 @@ class App extends Component {
   }
 
   generateSlug(title) {
+    // consider maybe using this: https://pid.github.io/speakingurl/
     let newTitle = title
       /* Remove unwanted characters, only accept alphanumeric and space */
       .replace(/[^A-Za-z0-9 ]/g,'')
@@ -54,13 +53,6 @@ class App extends Component {
       .replace(/\s/g, "-")
       .toLowerCase();
     return newTitle;
-    // consider this: https://pid.github.io/speakingurl/
-  }
-
-  getItemBySlug(slug) {
-    console.log('getItemBySlug');
-    // could be used from detail page can retrieve the item
-    // console.log('getItemBySlug: ', slug);
   }
 
   componentDidMount() { 
@@ -68,59 +60,28 @@ class App extends Component {
   }
 
   render() {
+    const { items } = this.state;
+
     return (
       <Router basename='/ytf'>
         <Layout>
-          <Route
-            exact path="/"
-            // render={() => (
-            //     <div className='page list-page'>
-            //       <div className='page-content'>
-            //         <List items={this.props.items}>
-            //         </List>
-            //       </div>
-            //     </div>
-            //   )
-            // }
-            render={() => (
+          { items && (
+            <Route
+              exact path='/'
+              render={() => (
                 <ListPage items={this.state.items}>
                 </ListPage>
-              )
-            }
-          />
-          <Route
-            path='/detail/:slug'
-            
-            // method 1
-            // passes items : NO
-            // access to location (and item id) on detail page : YES
-            component={DetailPage}
-            
-            // method 2
-            // passes items : YES
-            // acces to location (and item id) on detail page : NO
-            // component={() => (
-            //   <DetailPage items={this.state.items}>
-            //   </DetailPage>
-            // )}
-            
-            // method 3
-            // this is not accessible on DetailPage via this.props.route.test 
-            // because this.props.route is undefined
-            test='xxx'
-
-            // method 4
-            render={() => (
-                <DetailPage test='foo'>
-                </DetailPage>
-              )
-            }
-
-          />
+              )}
+            />
+          )}
+          { items && (
+            <Route path='/detail/:slug' render={({ match }) => (
+              <DetailPage item={items.find(item => item.slug === match.params.slug)}/>     
+            )}/>
+          )}
         </Layout>
       </Router>
     );
   }
 }
-
 export default App;

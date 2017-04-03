@@ -11,9 +11,15 @@ export default class ListItem extends React.Component {
   					<div className='col-sm-6 col-sm-push-6'>
   						<div className='list-group-item--info'>
 	  						<Link
-	  							to={{ pathname: '/detail/'+this.props.slug , state: { videoProps: this.props }}}
-	  							// to={'/detail/'+this.props.id}
-	  						>
+	  							to={
+	  								`/detail/${this.props.slug}`
+	  								// {
+	  								// 	pathname: '/detail/'+this.props.slug ,
+	  								// 	state: { videoProps: this.props }
+		  							// }
+		  						}
+		  						// to={'/detail/'+this.props.id}
+		  					>
 				  				<h1 className='title'>{this.props.title}</h1>
 				  			</Link>
 				  			<div className='date strong'>Published on { this.props.date }</div>
@@ -25,7 +31,10 @@ export default class ListItem extends React.Component {
 								<Link
 									//passing all props here
 									//but what to do if navigating directly to /detail from the url?
-									to={{ pathname: '/detail/'+this.props.slug , state: { videoProps: this.props }}}
+									to={{
+										pathname: '/detail/'+this.props.slug ,
+										state: { videoProps: this.props }
+									}}
 									
 									// passing only the id
 									// but can't access the whole items object on detail page

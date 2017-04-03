@@ -2,7 +2,6 @@
 
 ## todo
 
-* pass props to child
 * add hover effects to list thumbnail
 * test in browsers
 * setup build
@@ -10,6 +9,11 @@
 
 ## todo later
 
+* router
+  * pass props to child
+  * handle unknown path
+  * handle empty
+  * router v4
 * refactor css
 * a header for each view
 * url params in detail page instead of sending props as state? 
