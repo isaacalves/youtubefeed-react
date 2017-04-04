@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { browserHistory } from 'react-router';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
@@ -24,15 +23,13 @@ export default class Layout extends Component {
   }
 }
 
-// how to handle children here?
+// how to handle the Route children on a stateless component (can't use this)?
 // const Layout = () => {
 //   return (
 //     <div>
 //       <Header>
 //       </Header>
-      
 //       {this.props.children}
-
 //       <Footer>
 //       </Footer>
 //     </div>

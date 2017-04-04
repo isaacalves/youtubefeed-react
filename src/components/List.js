@@ -6,15 +6,15 @@ export default class List extends React.Component {
     return (
   		<div className='list-group'>
      		{this.props.items.map((item, i) => (
-				<ListItem
-					date={item.date}
-					description={item.description}
-					id={item.id}
-					key={i}
-					thumbnail={item.thumbnail}
-					title={item.title}
-					slug={item.slug}
-				/>
+					<ListItem
+						date={item.date}
+						description={item.description}
+						id={item.id}
+						key={i}
+						thumbnail={item.thumbnail}
+						title={item.title}
+						slug={item.slug}
+					/>
      		))}
     	</div>
     );

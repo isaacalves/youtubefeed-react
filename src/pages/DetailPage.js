@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import YouTube from 'react-youtube';
 
 const DetailPage = ({ item }) => {
+  console.log('DetailPage render');
   const videoOptions = {
     playerVars: { // https://developers.google.com/youtube/player_parameters
       autoplay: 0
@@ -17,9 +18,11 @@ const DetailPage = ({ item }) => {
             <div className='row'>
               <div className='col-xs-12'>
                 <h1 className='title'>{item.title}</h1>          
-                <div className='date strong'>Published on {item.date}</div>
+                <p className='date'>Published on {item.date}</p>
               </div>
-              <div className='col-xs-12'>
+            </div>
+            <div className='row'>
+              <div className='col-sm-6'>
                 <div className='responsive-embed-youtube'>
                   <YouTube
                     videoId={item.id}
@@ -27,7 +30,7 @@ const DetailPage = ({ item }) => {
                   ></YouTube>
                 </div>
               </div>
-              <div className='col-xs-12'>
+              <div className='col-sm-6'>
                 <div className='description'>{item.description}</div>
               </div>
             </div>

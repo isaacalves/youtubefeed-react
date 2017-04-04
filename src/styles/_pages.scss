@@ -1,27 +1,39 @@
 .page {
 
 	.page-content {
-		max-width: 480px;
-		margin: 0 auto;
-		padding: 0 $grid-gutter-width/2;
-		
-		@media (min-width: $screen-sm-min){
-			max-width: 768px;
-		}
 	}
 
 	&.list-page {
-		
+
+		.page-content {
+			margin: 0 auto;
+			max-width: $screen-xs-max;
+			padding: 0 $grid-gutter-width/2;
+
+			@media (min-width: $screen-sm-min){
+				max-width: $screen-is-max;
+			}
+		}
 	}
 
 	&.detail-page {
 
 		.page-content {
 			padding-bottom: $grid-gutter-width/2;
+			max-width: $screen-xs-max;
+			margin: 0 auto;
+
+			@media (min-width: $screen-sm-min){
+				max-width: $screen-sm-max;
+			}
 		}
 
 		h1.title {
 			font-weight: 700;
+		}
+
+		.date {
+			font-weight: 500;
 		}
 	}
 }

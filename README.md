@@ -2,22 +2,26 @@
 
 ## todo
 
-* add hover effects to list thumbnail
-* test in browsers
-* setup build
-* deploy
+* pagination
+  * https://developers.google.com/youtube/v3/docs/videos/list
+* optimisation?
+* responsive images
+* fix SSR of detail page 
 
 ## todo later
 
+* transitions
+* routes for playlists and pagination
+* ux: hover on whole snippet instead of title or img
+* add font icons (seems to need webpack)
+* webpack
+* tests
 * router
-  * pass props to child
   * handle unknown path
-  * handle empty
-  * router v4
-* refactor css
+  * handle empty (detail/)
+* implement react hot loader
 * a header for each view
-* url params in detail page instead of sending props as state? 
-* component based css approach (other than using bootstrap-sass)?
+* component based css approach (other than using bootstrap-sass)
   * https://www.smashingmagazine.com/2017/01/styled-components-enforcing-best-practices-component-based-systems/
   * http://cssinjs.org/?v=v6.5.0
   * https://github.com/cssinjs/jss
@@ -32,7 +36,7 @@
 
 * react router
   * https://reacttraining.com/react-router/
-  * https://scotch.io/tutorials/routing-react-apps-the-complete-guide
+  * https://www.youtube.com/watch?v=a4kqMQorcnE&t=192s
 * video
   * https://github.com/troybetz/react-youtube
   

@@ -11,6 +11,8 @@
     "moment": "^2.18.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-fontawesome": "^1.5.0",
+    "react-loading": "^0.0.9",
     "react-router-dom": "next",
     "react-youtube": "^7.3.0"
   },
@@ -21,7 +23,8 @@
     "eject": "react-scripts eject",
     "build-css": "node-sass src/styles/ -o src/",
     "watch-css": "npm run build-css && node-sass src/styles/ -o src/ --watch --recursive",
-    "deploy-zac": "rsync -razP --exclude='node_modules' --exclude='.git' ./build/. root@104.131.16.158:../var/www/zacalves.com/stage/ytf/"
+    "deploy-zac": "rsync -razP --exclude='node_modules' --exclude='.git' ./build/. root@104.131.16.158:../var/www/zacalves.com/stage/ytf/",
+    "build-deploy-zac": "npm run build && npm run deploy-zac"
   },
   "homepage": "http://stage.zacalves.com/ytf"
 }

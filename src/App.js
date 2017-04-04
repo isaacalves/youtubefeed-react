@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Loading from 'react-loading';
 import moment from 'moment';
-
-//components
-// import Header from './components/Header';
-// import List from './components/List';
 
 //pages
 import Layout from './pages/Layout';
@@ -22,8 +19,15 @@ class App extends Component {
     };
   }
 
-  fetchData() {
-    fetch(this.props.url)
+  /*
+  Get YouTube playlist feed URL 
+   */
+  getFeedURL(id) {
+    return `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails,status&maxResults=10&playlistId=${id}&key=AIzaSyCuv_16onZRx3qHDStC-FUp__A6si-fStw`;
+  }
+  
+  fetchData(id) {
+    fetch( this.getFeedURL(id) )
       .then(response => response.json())
       .then(data => {
         // console.log(data.items);
@@ -56,16 +60,17 @@ class App extends Component {
   }
 
   componentDidMount() { 
-    this.fetchData();
+    this.fetchData(this.props.id);
   }
 
   render() {
+    console.log('App render');
     const { items } = this.state;
 
     return (
       <Router basename='/ytf'>
         <Layout>
-          { items && (
+          { items ? (
             <Route
               exact path='/'
               render={() => (
@@ -73,12 +78,24 @@ class App extends Component {
                 </ListPage>
               )}
             />
+          ) : (
+            <div class='text-center'>
+              <span>loading</span>
+              <div className='loading-animation'>
+                <Loading
+                  type='bubbles'
+                  color='#000'
+                  className='loading-animation'
+                />
+              </div>
+            </div>
           )}
           { items && (
             <Route path='/detail/:slug' render={({ match }) => (
               <DetailPage item={items.find(item => item.slug === match.params.slug)}/>     
             )}/>
           )}
+
         </Layout>
       </Router>
     );

@@ -9,7 +9,7 @@ $small-breakpoint: 	480px;
 $medium-breakpoint: 768px;
 
 // custom breakpoint (intermediate small)
-// @import "scss/is";
+@import "scss/is";
 
 // bootstrap
 @import "scss/variables";

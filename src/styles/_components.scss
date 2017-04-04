@@ -4,9 +4,9 @@
 
 	.header-brand {
 		padding: 15px 15px;
-	    font-size: 18px;
-	    line-height: 20px;
-	    height: 50px;
+		font-size: 18px;
+		line-height: 20px;
+		height: 50px;
 
 		&,
 		:hover,
@@ -24,54 +24,89 @@
 
 	.list-group-item {
 		overflow: auto;
-  	padding: 15px;
-  	margin: 0 auto 0;
-  	
-  	// border: none;
-  	
-  	&:not(:last-child) {
-  		border-bottom: none;
-  	}
-  	
-    &--thumbnail {
+	  	padding: 15px;
+	  	margin: 0 auto 0;
+	  	
+	  	// border: none;
+	  	
+	  	&:not(:last-child) {
+	  		border-bottom: none;
+	  	}
+	  	
+	    &__thumbnail {
 
-    	float: left;
-    	max-width: 100%;
-			margin-bottom: 0;
-			padding: 0;
-			border: 0;
+	    	float: left;
+	    	max-width: 100%;
+				margin-bottom: 0;
+				padding: 0;
+				border: 0;
 
-    	img {
-    		max-width: 100%;
-    	}
-    }
-    
-    &--info {
+	    	img {
+	    		z-index: 100;
+	    		max-width: 100%;
+	    	}
 			
+				.overlay {
+					display: none;
+				}
+				
+				// temporary
+				// would rather enable/disable this based on cursor/touch instead of screen width
+				@media (min-width: $screen-sm-min){
+					.overlay {
+		    		z-index: 200;
+		    		position: absolute;
+				    top: 0;
+				    bottom: 0;
+				    left: 0;
+				    right: 0;
+				    background-color: rgba(0,0,0,0.25);
+				    
+				    opacity: 0;
+				    transition: opacity 0.15s ease-out;
+
+		    		&__icon {
+		    			font-size: 50px;
+		    			color: white;
+		    		}
+		    	}
+
+		    	a:hover,
+		    	a:focus,
+		    	a:active, {
+		    		.overlay {
+		    			opacity: .75;
+		    		}
+		    	}
+		    }
+	    }
+	    
+	    &__info {
+				
 			@media (min-width: $screen-sm-min){
 				margin-left: $grid-gutter-width/2;
 			}
 
      	h1.title {
      		font-size: 2rem;
-      	font-weight: 700;
-      	margin-top: 0;
-      	margin-bottom: $mb;
+	      	font-weight: 700;
+	      	margin-top: 0;
+	      	// margin-bottom: $mb;
 
-      	overflow: hidden;
+	      	overflow: hidden;
 		    text-overflow: ellipsis;
 		    display: -webkit-box;
 		    -webkit-box-orient: vertical;
 		    -webkit-line-clamp: 2;
 
-			  @media (min-width: $screen-sm-min){
+				@media (min-width: $screen-sm-min){
 					font-size: 2.5rem;
 				}
 			}
 			
 			.date {
-				margin-bottom: $mb;
-				// font-weight: 700;
+				// margin-bottom: $mb;
+				font-weight: 500;
 			}
 
      	.description {
@@ -83,8 +118,8 @@
 		    -webkit-box-orient: vertical;
 		    -webkit-line-clamp: 5;
 
-      	@media (max-width: $screen-xs-max){
-      		display: none;
+	      	@media (max-width: $screen-is-max){
+	      		display: none;
     		}
      	}
     }
