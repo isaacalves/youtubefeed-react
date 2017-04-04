@@ -79,8 +79,8 @@ class App extends Component {
               )}
             />
           ) : (
-            <div class='text-center'>
-              <span>loading</span>
+            <div className='text-center'>
+              <span>loading...</span>
               <div className='loading-animation'>
                 <Loading
                   type='bubbles'

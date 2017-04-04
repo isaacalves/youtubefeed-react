@@ -32,7 +32,7 @@
 	  	&:not(:last-child) {
 	  		border-bottom: none;
 	  	}
-	  	
+
 	    &__thumbnail {
 
 	    	float: left;
@@ -45,32 +45,32 @@
 	    		z-index: 100;
 	    		max-width: 100%;
 	    	}
-			
+
 				.overlay {
-					display: none;
-				}
+	    		z-index: 200;
+	    		position: absolute;
+			    top: 0;
+			    bottom: 0;
+			    left: 0;
+			    right: 0;
+			    background-color: rgba(0,0,0,0.25);
+			    
+			    opacity: 0;
+			    transition: opacity 0.15s ease-out;
+
+	    		&__icon {
+	    			font-size: 50px;
+	    			color: white;
+	    		}
+
+	    		// temporary
+					// would rather enable/disable this based on cursor/touch instead of screen width
+					@media (max-width: $screen-is-max){
+						display: none;
+			    }
+	    	}
 				
-				// temporary
-				// would rather enable/disable this based on cursor/touch instead of screen width
 				@media (min-width: $screen-sm-min){
-					.overlay {
-		    		z-index: 200;
-		    		position: absolute;
-				    top: 0;
-				    bottom: 0;
-				    left: 0;
-				    right: 0;
-				    background-color: rgba(0,0,0,0.25);
-				    
-				    opacity: 0;
-				    transition: opacity 0.15s ease-out;
-
-		    		&__icon {
-		    			font-size: 50px;
-		    			color: white;
-		    		}
-		    	}
-
 		    	a:hover,
 		    	a:focus,
 		    	a:active, {
