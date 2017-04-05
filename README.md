@@ -1,16 +1,24 @@
 # front end test app youtube feed react
 
+## issues
+
+* #1 pagination on the request restricts a couple of things: SSR, proper pagination, loading detail of video that's not in current query. solution: load everything beforehand and deal with pagination internally
+
 ## todo
 
-* pagination issues (make it a component, first has no prevToken, btn for each page, styles)
-  * https://developers.google.com/youtube/v3/docs/videos/list
+* fix #1
 * optimisation?
 * responsive images
+* pagination issues (pages: 1,2,3 etc)
 * fix SSR of detail page 
 
 ## todo later
 
+* pagination issues (first has no prevToken)
+  * https://developers.google.com/youtube/v3/docs/videos/list
 * transitions
+  * try react-motion
+  * react css transition group?
 * routes for playlists and pagination
 * ux: hover on whole snippet instead of title or img
 * add font icons (seems to need webpack)
@@ -22,6 +30,7 @@
 * implement react hot loader
 * a header for each view
 * sass sourcemaps
+* sort/refactor css
 * autoprefixer?
 * component based css approach (other than using bootstrap-sass)
   * https://www.smashingmagazine.com/2017/01/styled-components-enforcing-best-practices-component-based-systems/

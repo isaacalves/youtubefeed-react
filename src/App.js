@@ -8,6 +8,9 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Loading from 'react-loading';
 import moment from 'moment';
 
+// components
+import Pagination from './components/Pagination';
+
 //pages
 import Layout from './pages/Layout';
 import DetailPage from './pages/DetailPage';
@@ -37,6 +40,8 @@ class App extends Component {
     if (pageToken){
       url += '&pageToken=' + pageToken;
     }
+    console.log('getFeedUrl: ', url);
+
     return url;
   }
   
@@ -46,7 +51,8 @@ class App extends Component {
     fetch(url)
       .then(response => response.json())
       .then(data => {
-        // console.log(data);
+        console.log(data);
+        console.log(this.props.url);
         
         let items = data.items.map((item) => ({
           date: moment( item.snippet.publishedAt ).format("MMM Do, YYYY"),
@@ -111,19 +117,22 @@ class App extends Component {
               exact path='/'
               render={() => (
                 <div>
-                  <div className='pagination text-center'>
-                    <a className='btn' disabled={!this.state.prevPageToken} onClick={this.prevPage.bind(this)} >
-                      Previous
-                    </a>
-                    <a className='btn' disabled={!this.state.nextPageToken} onClick={this.nextPage.bind(this)} >
-                      Next
-                    </a>
-                  </div>
+                  <Pagination
+                    prevPageToken={this.state.prevPageToken}
+                    prevPageHandler={this.prevPage.bind(this)}
+                    nextPageToken={this.state.nextPageToken}
+                    nextPageHandler={this.nextPage.bind(this)}
+                  >
+                  </Pagination>
                   <ListPage items={this.state.items}>
                   </ListPage>
-                  {
-                    // add pagination component here too
-                  }
+                  <Pagination
+                    prevPageToken={this.state.prevPageToken}
+                    prevPageHandler={this.prevPage.bind(this)}
+                    nextPageToken={this.state.nextPageToken}
+                    nextPageHandler={this.nextPage.bind(this)}
+                  >
+                  </Pagination>
                 </div>
               )}
             />
@@ -143,6 +152,7 @@ class App extends Component {
             <Route
               path='/:slug'
               render={({ match }) => (
+                // how to load the detail page if not in the first 10?
                 <DetailPage item={items.find(item => item.slug === match.params.slug)}/>     
             )}/>
           )}
