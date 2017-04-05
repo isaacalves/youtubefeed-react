@@ -24,7 +24,9 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "build-css": "node-sass src/styles/ -o src/",
-    "watch-css": "npm run build-css && node-sass src/styles/ -o src/ --watch --recursive"
+    "watch-css": "npm run build-css && node-sass src/styles/ -o src/ --watch --recursive",
+    "deploy-git": "git gh-deploy https://isaacalves.github.io/ytf/",
+    "build-deploy-git": "react-scripts build && git gh-deploy https://isaacalves.github.io/ytf/"
   },
   "homepage": "http://stage.zacalves.com/ytf"
 }

@@ -40,18 +40,12 @@
   * https://github.com/cssinjs/jss
   * https://github.com/typestyle/typestyle
 
-## instructions
-
-
-Deploy: `git gh-deploy https://isaacalves.github.io/ytf/`
-
-Everything else: npm scripts in package.json
-
 ## refs
 
 * wireframes: http://m5sdq6.axshare.com/#p=02_detail_-_tablet__768px_and_above_
 * feed url: https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails,status&maxResults=10&playlistId=PLSi28iDfECJPJYFA4wjlF5KUucFvc0qbQ&key=AIzaSyCuv_16onZRx3qHDStC-FUp__A6si-fStw
-* https://gist.github.com/cobyism/4730490
+* github pages deploy: https://gist.github.com/cobyism/4730490
+* github page: https://isaacalves.github.io/ytf/
 
 ## res
 
