@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import YouTube from 'react-youtube';
 
 const DetailPage = ({ item }) => {
-  console.log('DetailPage render');
+  // console.log('DetailPage render');
   const videoOptions = {
     playerVars: { // https://developers.google.com/youtube/player_parameters
       autoplay: 0

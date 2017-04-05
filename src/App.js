@@ -40,7 +40,7 @@ class App extends Component {
     if (pageToken){
       url += '&pageToken=' + pageToken;
     }
-    console.log('getFeedUrl: ', url);
+    // console.log('getFeedUrl: ', url);
 
     return url;
   }
@@ -51,8 +51,8 @@ class App extends Component {
     fetch(url)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
-        console.log(this.props.url);
+        // console.log(data);
+        // console.log(this.props.url);
         
         let items = data.items.map((item) => ({
           date: moment( item.snippet.publishedAt ).format("MMM Do, YYYY"),

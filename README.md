@@ -2,7 +2,7 @@
 
 ## issues
 
-* #1 pagination on the request restricts a couple of things: SSR, proper pagination, loading detail of video that's not in current query. solution: load everything beforehand and deal with pagination internally
+* #1 pagination on the request restricts a couple of things: SSR, proper pagination, loading detail of video that's not in current query. solution: load everything beforehand and deal with pagination internally. in other words, cache the whole object with all results
 
 ## todo
 
