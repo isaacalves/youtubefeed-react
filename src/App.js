@@ -112,23 +112,18 @@ class App extends Component {
               render={() => (
                 <div>
                   <div className='pagination text-center'>
-                    <a className='btn' onClick={this.prevPage.bind(this)} >
+                    <a className='btn' disabled={!this.state.prevPageToken} onClick={this.prevPage.bind(this)} >
                       Previous
                     </a>
-                    <a className='btn' onClick={this.nextPage.bind(this)} >
+                    <a className='btn' disabled={!this.state.nextPageToken} onClick={this.nextPage.bind(this)} >
                       Next
                     </a>
                   </div>
                   <ListPage items={this.state.items}>
                   </ListPage>
-                  <div className='pagination text-center'>
-                    <a className='btn' onClick={this.prevPage.bind(this)} >
-                      Previous
-                    </a>
-                    <a className='btn' onClick={this.nextPage.bind(this)} >
-                      Next
-                    </a>
-                  </div>
+                  {
+                    // add pagination component here too
+                  }
                 </div>
               )}
             />
