@@ -11,6 +11,7 @@
 
 * responsive images
 * optimisation
+* fix SSR. downgrade to router v3?
 
 ## todo later
 

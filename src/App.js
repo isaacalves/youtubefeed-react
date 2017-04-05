@@ -110,18 +110,20 @@ class App extends Component {
   }
 
   render() {
-    // console.log('App render');
+    console.log('App render');
     const { items } = this.state;
 
     return (
       <Router basename='/ytf'>
         <Layout>
-          <Route path='/' exact render={({ match }) => (
-              <Redirect to={`/playlist`}/>
-            )}/>
+          {
+            // <Route path='/' exact render={({ match }) => (
+            //   <Redirect to={`/playlist`}/>
+            // )}/>
+          }
           { items ? (
             <Route
-              exact path='/playlist'
+              exact path='/'
               render={() => (
                 <div>
                   <Pagination
