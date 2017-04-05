@@ -5884,6 +5884,9 @@ body {
       color: #dd99aa;
       text-decoration: none; }
 
+.pagination {
+  display: block; }
+
 .list-group .list-group-item {
   overflow: auto;
   padding: 15px;

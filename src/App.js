@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
+
+// v3
+// import { Router, Route, IndexRoute, hashHistory } from 'react-router';
+// v4
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+
 import Loading from 'react-loading';
 import moment from 'moment';
 
@@ -14,23 +19,34 @@ class App extends Component {
   constructor() {
     super();
 
+    // this need serious refactor. try flux/redux and container components
+    
     this.state = {
       items: null,
+      nextPageToken: null,
+      prevPageToken: null,
     };
   }
 
   /*
   Get YouTube playlist feed URL 
    */
-  getFeedURL(id) {
-    return `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails,status&maxResults=10&playlistId=${id}&key=AIzaSyCuv_16onZRx3qHDStC-FUp__A6si-fStw`;
+  getFeedURL({playlistId, pageToken}) {
+    let id = playlistId ? playlistId : this.props.defaultPlaylistId;
+    let url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails,status&maxResults=10&playlistId=${id}&key=AIzaSyCuv_16onZRx3qHDStC-FUp__A6si-fStw`;
+    if (pageToken){
+      url += '&pageToken=' + pageToken;
+    }
+    return url;
   }
   
-  fetchData(id) {
-    fetch( this.getFeedURL(id) )
+  fetchData(url) {
+    // console.log('fetchData, url: ', url);
+
+    fetch(url)
       .then(response => response.json())
       .then(data => {
-        // console.log(data.items);
+        // console.log(data);
         
         let items = data.items.map((item) => ({
           date: moment( item.snippet.publishedAt ).format("MMM Do, YYYY"),
@@ -41,7 +57,11 @@ class App extends Component {
           slug: this.generateSlug(item.snippet.title)
         }));
 
-        this.setState({ items: items });
+        this.setState({
+          items: items,
+          nextPageToken: data.nextPageToken,
+          prevPageToken: data.prevPageToken,
+        });
       })
       .catch(err => console.error(this.props.url, err.toString()))
   }
@@ -59,12 +79,28 @@ class App extends Component {
     return newTitle;
   }
 
+  prevPage() {
+    let url = this.getFeedURL({ pageToken: this.state.prevPageToken });
+    this.fetchData(url);
+  }
+
+  nextPage() {
+    let url = this.getFeedURL({ pageToken: this.state.nextPageToken });
+    this.fetchData(url);
+  }
+
   componentDidMount() { 
-    this.fetchData(this.props.id);
+    this.setState({
+      playlistId: this.props.defaultPlaylistId
+    })
+
+    this.fetchData(this.getFeedURL({}));
+    // this is weird
+    // how to have a function expect 2 optional params and use destructuring?
   }
 
   render() {
-    console.log('App render');
+    // console.log('App render');
     const { items } = this.state;
 
     return (
@@ -74,8 +110,26 @@ class App extends Component {
             <Route
               exact path='/'
               render={() => (
-                <ListPage items={this.state.items}>
-                </ListPage>
+                <div>
+                  <div className='pagination text-center'>
+                    <a className='btn' onClick={this.prevPage.bind(this)} >
+                      Previous
+                    </a>
+                    <a className='btn' onClick={this.nextPage.bind(this)} >
+                      Next
+                    </a>
+                  </div>
+                  <ListPage items={this.state.items}>
+                  </ListPage>
+                  <div className='pagination text-center'>
+                    <a className='btn' onClick={this.prevPage.bind(this)} >
+                      Previous
+                    </a>
+                    <a className='btn' onClick={this.nextPage.bind(this)} >
+                      Next
+                    </a>
+                  </div>
+                </div>
               )}
             />
           ) : (
@@ -91,11 +145,12 @@ class App extends Component {
             </div>
           )}
           { items && (
-            <Route path='/detail/:slug' render={({ match }) => (
-              <DetailPage item={items.find(item => item.slug === match.params.slug)}/>     
+            <Route
+              path='/:slug'
+              render={({ match }) => (
+                <DetailPage item={items.find(item => item.slug === match.params.slug)}/>     
             )}/>
           )}
-
         </Layout>
       </Router>
     );

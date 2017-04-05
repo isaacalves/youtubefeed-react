@@ -18,6 +18,12 @@
 	}
 }
 
+// Pagination
+.pagination {
+	// consider not using bootstrap
+	display: block;
+}
+
 // List
 .list-group {
 	$mb: 25px;

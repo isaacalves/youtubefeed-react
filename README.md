@@ -2,7 +2,7 @@
 
 ## todo
 
-* pagination
+* pagination issues (make it a component, first has no prevToken, btn for each page, styles)
   * https://developers.google.com/youtube/v3/docs/videos/list
 * optimisation?
 * responsive images
@@ -21,6 +21,8 @@
   * handle empty (detail/)
 * implement react hot loader
 * a header for each view
+* sass sourcemaps
+* autoprefixer?
 * component based css approach (other than using bootstrap-sass)
   * https://www.smashingmagazine.com/2017/01/styled-components-enforcing-best-practices-component-based-systems/
   * http://cssinjs.org/?v=v6.5.0
