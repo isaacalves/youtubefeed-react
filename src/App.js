@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
-
-// v3
-// import { Router, Route, IndexRoute, hashHistory } from 'react-router';
-// v4
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import Loading from 'react-loading';
 import moment from 'moment';
+// import { Motion } from 'react-motion';
+// import { RouteTransition } from 'react-router-transition';
 
-// components
 import Pagination from './components/Pagination';
 
-//pages
 import Layout from './pages/Layout';
 import DetailPage from './pages/DetailPage';
 import ListPage from './pages/ListPage';
@@ -40,8 +35,6 @@ class App extends Component {
     if (pageToken){
       url += '&pageToken=' + pageToken;
     }
-    // console.log('getFeedUrl: ', url);
-
     return url;
   }
   
@@ -52,22 +45,29 @@ class App extends Component {
       .then(response => response.json())
       .then(data => {
         // console.log(data);
-        // console.log(this.props.url);
-        
-        let items = data.items.map((item) => ({
-          date: moment( item.snippet.publishedAt ).format("MMM Do, YYYY"),
-          description: item.snippet.description,
-          id: item.contentDetails.videoId,
-          thumbnail: item.snippet.thumbnails.high.url,
-          title: item.snippet.title,
-          slug: this.generateSlug(item.snippet.title)
-        }));
 
-        this.setState({
-          items: items,
-          nextPageToken: data.nextPageToken,
-          prevPageToken: data.prevPageToken,
-        });
+        if (data.items){
+          let items = data.items.map((item) => ({
+            date: moment( item.snippet.publishedAt ).format("MMM Do, YYYY"),
+            description: item.snippet.description,
+            id: item.contentDetails.videoId,
+            thumbnail: item.snippet.thumbnails.high.url,
+            title: item.snippet.title,
+            slug: this.generateSlug(item.snippet.title)
+          }));
+
+          this.setState({
+            items: items,
+            nextPageToken: data.nextPageToken,
+            prevPageToken: data.prevPageToken,
+          });
+        }else{
+          console.error('Your request matched no items.');
+        }
+
+        // if (data.error && data.error.message){
+        //   console.error(data.error.message);
+        // }
       })
       .catch(err => console.error(this.props.url, err.toString()))
   }
@@ -86,13 +86,17 @@ class App extends Component {
   }
 
   prevPage() {
-    let url = this.getFeedURL({ pageToken: this.state.prevPageToken });
-    this.fetchData(url);
+    if (this.state.prevPageToken){
+      let url = this.getFeedURL({ pageToken: this.state.prevPageToken });
+      this.fetchData(url);
+    }
   }
 
   nextPage() {
-    let url = this.getFeedURL({ pageToken: this.state.nextPageToken });
-    this.fetchData(url);
+    if (this.state.nextPageToken){
+      let url = this.getFeedURL({ pageToken: this.state.nextPageToken });
+      this.fetchData(url);
+    }
   }
 
   componentDidMount() { 
@@ -112,9 +116,12 @@ class App extends Component {
     return (
       <Router basename='/ytf'>
         <Layout>
+          <Route path='/' exact render={({ match }) => (
+              <Redirect to={`/playlist`}/>
+            )}/>
           { items ? (
             <Route
-              exact path='/'
+              exact path='/playlist'
               render={() => (
                 <div>
                   <Pagination
@@ -150,7 +157,7 @@ class App extends Component {
           )}
           { items && (
             <Route
-              path='/:slug'
+              path='/video/:slug'
               render={({ match }) => (
                 // how to load the detail page if not in the first 10?
                 <DetailPage item={items.find(item => item.slug === match.params.slug)}/>     
@@ -161,4 +168,5 @@ class App extends Component {
     );
   }
 }
+
 export default App;

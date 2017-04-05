@@ -3,34 +3,36 @@
 ## issues
 
 * #1 pagination on the request restricts a couple of things: SSR, proper pagination, loading detail of video that's not in current query. solution: load everything beforehand and deal with pagination internally. in other words, cache the whole object with all results
+  * can't get all data. maxResults param: "Acceptable values are 1 to 50, inclusive. The default value is 5"
+  * can't load - initially - a different set of results other than the first one
+  * idea: sounds a bit too hacky and involves doing multiple API requests: do a first request on load and get 'totalResults'. based on that, build the pagination buttons, and also show the first results. once you click the buttons, it will have to make n API requests where n = targetPageIndex - currentPageIndex. but those tokens could be on a database and/or cached on the client too. they don't change, and are related to maxResults
 
 ## todo
 
-* fix #1
-* optimisation?
 * responsive images
-* pagination issues (pages: 1,2,3 etc)
-* fix SSR of detail page 
+* optimisation
 
 ## todo later
 
-* pagination issues (first has no prevToken)
-  * https://developers.google.com/youtube/v3/docs/videos/list
+* fix too much rendering
+* sass sourcemaps
+* sort/refactor css
+* fix #1 (pagination, SSR)
 * transitions
   * try react-motion
   * react css transition group?
 * routes for playlists and pagination
-* ux: hover on whole snippet instead of title or img
+* ux: hover on whole snippet instead of title or img. this might not be good UX (what if user wants to select text)
 * add font icons (seems to need webpack)
 * webpack
 * tests
 * router
   * handle unknown path
-  * handle empty (detail/)
-* implement react hot loader
-* a header for each view
-* sass sourcemaps
-* sort/refactor css
+  * related to:
+    * motion
+    * HMR
+* implement react hot loader (HMR)
+* a header for each view?
 * autoprefixer?
 * component based css approach (other than using bootstrap-sass)
   * https://www.smashingmagazine.com/2017/01/styled-components-enforcing-best-practices-component-based-systems/
@@ -38,13 +40,23 @@
   * https://github.com/cssinjs/jss
   * https://github.com/typestyle/typestyle
 
+## instructions
+
+
+Deploy: `git gh-deploy https://isaacalves.github.io/ytf/`
+
+Everything else: npm scripts in package.json
+
 ## refs
 
 * wireframes: http://m5sdq6.axshare.com/#p=02_detail_-_tablet__768px_and_above_
 * feed url: https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails,status&maxResults=10&playlistId=PLSi28iDfECJPJYFA4wjlF5KUucFvc0qbQ&key=AIzaSyCuv_16onZRx3qHDStC-FUp__A6si-fStw
+* https://gist.github.com/cobyism/4730490
 
 ## res
 
+* youtube api
+  * https://developers.google.com/youtube/v3/docs/videos/list
 * react router
   * https://reacttraining.com/react-router/
   * https://www.youtube.com/watch?v=a4kqMQorcnE&t=192s

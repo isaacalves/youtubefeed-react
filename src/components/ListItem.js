@@ -11,7 +11,7 @@ export default class ListItem extends React.Component {
   					<div className='col-sm-6 col-sm-push-6'>
   						<div className='list-group-item__info'>
 	  						<Link
-	  							to={`/${this.props.slug}`}
+	  							to={`/video/${this.props.slug}`}
 		  					>
 				  				<h1 className='title'>{this.props.title}</h1>
 				  			</Link>
@@ -22,7 +22,7 @@ export default class ListItem extends React.Component {
 			  		<div className='col-sm-6 col-sm-pull-6'>	
 							<div className='list-group-item__thumbnail'>
 								<Link
-									to={`/${this.props.slug}`}
+									to={`/video/${this.props.slug}`}
 
 									//passing all props here
 									//but what to do if navigating directly to /detail from the url?

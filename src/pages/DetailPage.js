@@ -14,7 +14,7 @@ const DetailPage = ({ item }) => {
     <div className='page detail-page'>
       <div className='page-content'>
         <div className='container-fluid'>
-          <Link to='/'>&larr; Back to list of videos</Link>
+          <Link to='/playlist/'>&larr; Back to list of videos</Link>
           <div className='item-detail'>
             <div className='row'>
               <div className='col-xs-12'>

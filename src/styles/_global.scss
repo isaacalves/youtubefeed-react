@@ -4,10 +4,6 @@ body {
 }
 
 .btn {
-	&:hover {
-		color: $brand-primary;
-	}
-	
 	// &:hover:enabled {
 	&:hover:not([disabled]) {
 		color: darken($brand-primary, 15%);

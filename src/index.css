@@ -5828,9 +5828,6 @@ button.close {
 body {
   font-weight: 300; }
 
-.btn:hover {
-  color: #dd99aa; }
-
 .btn:hover:not([disabled]) {
   color: #ca607a; }
 
