@@ -47,6 +47,11 @@
 * feed url: https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails,status&maxResults=10&playlistId=PLSi28iDfECJPJYFA4wjlF5KUucFvc0qbQ&key=AIzaSyCuv_16onZRx3qHDStC-FUp__A6si-fStw
 * github pages deploy: https://gist.github.com/cobyism/4730490
 * github page: https://isaacalves.github.io/ytf/
+* in case you need to --force push the subtree into gh-pages branch:
+
+  ```git push github `git subtree split --prefix build master`:gh-pages --force```
+
+  source: http://clontz.org/blog/2014/05/08/git-subtree-push-for-deployment/
 
 ## res
 
