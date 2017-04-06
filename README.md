@@ -9,9 +9,11 @@
 
 ## todo
 
+* truncate lines in firefox
 * responsive images
 * optimisation
 * fix SSR. downgrade to router v3?
+* fix no-match + loading anim
 
 ## todo later
 

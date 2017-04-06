@@ -29,65 +29,95 @@
 	$mb: 25px;
 
 	.list-group-item {
-		overflow: auto;
-	  	padding: 15px;
-	  	margin: 0 auto 0;
-	  	
-	  	// border: none;
-	  	
-	  	&:not(:last-child) {
-	  		border-bottom: none;
-	  	}
+  	overflow: auto;
+  	padding: 15px;
+  	margin: 0 auto 0;
+  	
+  	// border: none;
+  	
+  	&:not(:last-child) {
+  		border-bottom: none;
+  	}
 
-	    &__thumbnail {
+    &__thumbnail {
 
-	    	float: left;
-	    	max-width: 100%;
-				margin-bottom: 0;
-				padding: 0;
-				border: 0;
+    	float: left;
+    	width: 100%;
+			margin-bottom: 0;
+			padding: 0;
+			border: 0;
+			overflow: hidden;
 
-	    	img {
-	    		z-index: 100;
-	    		max-width: 100%;
-	    	}
+    	img {
+    		z-index: 100;
+    		max-width: 100%;
+    		transition: filter 0.25s ease-out;
+    	}
 
-				.overlay {
-	    		z-index: 200;
-	    		position: absolute;
-			    top: 0;
-			    bottom: 0;
-			    left: 0;
-			    right: 0;
-			    background-color: rgba(0,0,0,0.25);
-			    
-			    opacity: 0;
-			    transition: opacity 0.15s ease-out;
+    	.bg-image {
+    		background-size: cover;
+    		background-position: center;
+    		max-width: 100%;
+    		padding-bottom: 67%;
 
-	    		&__icon {
-	    			font-size: 50px;
-	    			color: white;
+    		transform: scale(1);
+    		transition: transform 10s ease-out;
+    	}
+
+			.overlay {
+    		z-index: 200;
+    		position: absolute;
+		    top: 0;
+		    bottom: 0;
+		    left: 0;
+		    right: 0;
+		    background-color: rgba(0,0,0,0.25);
+		    
+		    opacity: 0;
+		    transition: opacity 0.25s ease-out;
+
+    		// &__icon {
+    		// 	font-size: 50px;
+    		// 	color: white;
+    		// 	transform: scale(0);
+    		// 	transition: transform 0.25s ease-out;
+    		// }
+
+    		// temporary
+				// would rather enable/disable this based on cursor/touch instead of screen width
+				@media (max-width: $screen-is-max){
+					display: none;
+		    }
+    	}
+			
+			// 
+			@media (min-width: $screen-sm-min){
+	    	a:hover,
+	    	a:focus,
+	    	a:active, {
+
+	    		.bg-image {
+						transform: scale(1.2);
 	    		}
 
-	    		// temporary
-					// would rather enable/disable this based on cursor/touch instead of screen width
-					@media (max-width: $screen-is-max){
-						display: none;
-			    }
+	    		.overlay {
+	    			opacity: .75;
+
+	    			// &__icon {
+		    		// 	font-size: 50px;
+		    		// 	color: white;
+		    		// 	transform: scale(1);
+		    		// }
+	    		}
+
+	    		img {
+	    			 filter: grayscale(0.5);
+	    		}
 	    	}
-				
-				@media (min-width: $screen-sm-min){
-		    	a:hover,
-		    	a:focus,
-		    	a:active, {
-		    		.overlay {
-		    			opacity: .75;
-		    		}
-		    	}
-		    }
 	    }
-	    
-	    &__info {
+    }
+    
+    &__info {
 				
 			@media (min-width: $screen-sm-min){
 				margin-left: $grid-gutter-width/2;
@@ -95,11 +125,11 @@
 
      	h1.title {
      		font-size: 2rem;
-	      	font-weight: 700;
-	      	margin-top: 0;
-	      	// margin-bottom: $mb;
+      	font-weight: 700;
+      	margin-top: 0;
+      	// margin-bottom: $mb;
 
-	      	overflow: hidden;
+      	overflow: hidden;
 		    text-overflow: ellipsis;
 		    display: -webkit-box;
 		    -webkit-box-orient: vertical;

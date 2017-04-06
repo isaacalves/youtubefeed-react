@@ -35,11 +35,11 @@ export default class ListItem extends React.Component {
 									// but can't access the whole items object on detail page
 									// to={'/detail/'+this.props.id }
 								>
-									<img src={this.props.thumbnail} alt='' />
+									<div className='bg-image' style={{'background-image': `url(${this.props.thumbnail})`}} title='' />
 									<div className='overlay aligner'>
 										<div className='aligner-item'>
-											<div className='overlay__icon'>+</div>
 											{
+												// <div className='overlay__icon'>+</div>
 												// please find a better way to commend jsx code
 												// <i className='fa fa-plus-circle'></i>
 											}

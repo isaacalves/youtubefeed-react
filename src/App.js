@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { 
+  BrowserRouter as Router, 
+  Route,
+  Redirect
+} from 'react-router-dom';
 import Loading from 'react-loading';
 import moment from 'moment';
 // import { Motion } from 'react-motion';
@@ -12,6 +16,14 @@ import DetailPage from './pages/DetailPage';
 import ListPage from './pages/ListPage';
 
 moment.locale('en');
+
+class NoMatch extends Component {
+  render(){
+    return (
+      <Redirect to={`/`}/>
+    )
+  }
+}
 
 class App extends Component {
   constructor() {
@@ -26,9 +38,6 @@ class App extends Component {
     };
   }
 
-  /*
-  Get YouTube playlist feed URL 
-   */
   getFeedURL({playlistId, pageToken}) {
     let id = playlistId ? playlistId : this.props.defaultPlaylistId;
     let url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails,status&maxResults=10&playlistId=${id}&key=AIzaSyCuv_16onZRx3qHDStC-FUp__A6si-fStw`;
@@ -44,7 +53,7 @@ class App extends Component {
     fetch(url)
       .then(response => response.json())
       .then(data => {
-        // console.log(data);
+        console.log(data);
 
         if (data.items){
           let items = data.items.map((item) => ({
@@ -105,6 +114,10 @@ class App extends Component {
     })
 
     this.fetchData(this.getFeedURL({}));
+
+    // this.fetchData(this.getFeedURL({
+    //   playlistId: this.props.defaultPlaylistId
+    // }));
     // this is weird
     // how to have a function expect 2 optional params and use destructuring?
   }
@@ -165,6 +178,7 @@ class App extends Component {
                 <DetailPage item={items.find(item => item.slug === match.params.slug)}/>     
             )}/>
           )}
+          <Route component={NoMatch} />
         </Layout>
       </Router>
     );
