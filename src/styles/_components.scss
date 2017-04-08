@@ -26,7 +26,6 @@
 
 // List
 .list-group {
-	$mb: 25px;
 
 	.list-group-item {
   	overflow: auto;
@@ -58,7 +57,7 @@
     		background-size: cover;
     		background-position: center;
     		max-width: 100%;
-    		padding-bottom: 67%;
+    		padding-bottom: 60%;
 
     		transform: scale(1);
     		transition: transform 10s ease-out;
@@ -127,7 +126,6 @@
      		font-size: 2rem;
       	font-weight: 700;
       	margin-top: 0;
-      	// margin-bottom: $mb;
 
       	overflow: hidden;
 		    text-overflow: ellipsis;
@@ -141,13 +139,10 @@
 			}
 			
 			.date {
-				// margin-bottom: $mb;
 				font-weight: 500;
 			}
 
      	.description {
-     		margin-bottom: $mb;
-
      		overflow: hidden;
 		    text-overflow: ellipsis;
 		    display: -webkit-box;

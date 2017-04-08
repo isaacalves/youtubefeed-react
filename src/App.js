@@ -53,7 +53,7 @@ class App extends Component {
     fetch(url)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
+        // console.log(data);
 
         if (data.items){
           let items = data.items.map((item) => ({
@@ -70,8 +70,6 @@ class App extends Component {
             nextPageToken: data.nextPageToken,
             prevPageToken: data.prevPageToken,
           });
-        }else{
-          console.error('Your request matched no items.');
         }
 
         // if (data.error && data.error.message){

@@ -23,7 +23,6 @@ export default class Layout extends Component {
   }
 }
 
-// how to handle the Route children on a stateless component (can't use this)?
 // const Layout = () => {
 //   return (
 //     <div>
@@ -35,5 +34,4 @@ export default class Layout extends Component {
 //     </div>
 //   )
 // }
-
 // export default Layout;
