@@ -40,7 +40,7 @@ class App extends Component {
 
   getFeedURL({playlistId, pageToken}) {
     let id = playlistId ? playlistId : this.props.defaultPlaylistId;
-    let url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails,status&maxResults=10&playlistId=${id}&key=AIzaSyCuv_16onZRx3qHDStC-FUp__A6si-fStw`;
+    let url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails,status&maxResults=50&playlistId=${id}&key=AIzaSyCuv_16onZRx3qHDStC-FUp__A6si-fStw`;
     if (pageToken){
       url += '&pageToken=' + pageToken;
     }
@@ -64,6 +64,8 @@ class App extends Component {
             title: item.snippet.title,
             slug: this.generateSlug(item.snippet.title)
           }));
+
+          items.reverse();
 
           this.setState({
             items: items,
@@ -137,22 +139,26 @@ class App extends Component {
               exact path='/'
               render={() => (
                 <div>
-                  <Pagination
-                    prevPageToken={this.state.prevPageToken}
-                    prevPageHandler={this.prevPage.bind(this)}
-                    nextPageToken={this.state.nextPageToken}
-                    nextPageHandler={this.nextPage.bind(this)}
-                  >
-                  </Pagination>
+                  { (this.state.prevPageToken || this.state.nextPageToken) &&
+                    <Pagination
+                      enablePrev={this.state.prevPageToken}
+                      enableNext={this.state.nextPageToken}
+                      prevPageHandler={this.prevPage.bind(this)}
+                      nextPageHandler={this.nextPage.bind(this)}
+                    >
+                    </Pagination>
+                  }
                   <ListPage items={this.state.items}>
                   </ListPage>
-                  <Pagination
-                    prevPageToken={this.state.prevPageToken}
-                    prevPageHandler={this.prevPage.bind(this)}
-                    nextPageToken={this.state.nextPageToken}
-                    nextPageHandler={this.nextPage.bind(this)}
-                  >
-                  </Pagination>
+                  { (this.state.prevPageToken || this.state.nextPageToken) &&
+                    <Pagination
+                      enablePrev={this.state.prevPageToken}
+                      enableNext={this.state.nextPageToken}
+                      prevPageHandler={this.prevPage.bind(this)}
+                      nextPageHandler={this.nextPage.bind(this)}
+                    >
+                    </Pagination>
+                  }
                 </div>
               )}
             />

@@ -9,7 +9,7 @@ export default class Header extends React.Component {
 				<div className="navbar-header"> 
 					<div className="header-brand text-center">
             <Link to='/'>
-	     			 My YouTube Playlist
+	     			 Jazz Guitar
             </Link>
 	     		</div>
 				</div>

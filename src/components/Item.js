@@ -20,7 +20,7 @@ export default class Item extends React.Component {
           </div>
         </div>
         <div className='row'>
-          <div className='col-sm-6'>
+          <div className='col-xs-12'>
             <div className='responsive-embed-youtube'>
               <YouTube
                 videoId={this.props.videoId}
@@ -28,7 +28,7 @@ export default class Item extends React.Component {
               ></YouTube>
             </div>
           </div>
-          <div className='col-sm-6'>
+          <div className='col-xs-12'>
             <div className='description'>{this.props.description}</div>
           </div>
         </div>
