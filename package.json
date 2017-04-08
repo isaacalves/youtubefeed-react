@@ -25,8 +25,7 @@
     "eject": "react-scripts eject",
     "build-css": "node-sass src/styles/ -o src/",
     "watch-css": "npm run build-css && node-sass src/styles/ -o src/ --watch --recursive",
-    "deploy-gh": "git subtree push --prefix build github gh-pages",
-    "build-deploy-gh": "react-scripts build && npm run deploy-gh"
+    "deploy-gh": "git subtree push --prefix build github gh-pages"
   },
   "homepage": "http://stage.zacalves.com/ytf"
 }

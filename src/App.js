@@ -36,11 +36,12 @@ class App extends Component {
       nextPageToken: null,
       prevPageToken: null,
     };
+
+    let temp_items = [];
   }
 
-  getFeedURL({playlistId, pageToken}) {
-    let id = playlistId ? playlistId : this.props.defaultPlaylistId;
-    let url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails,status&maxResults=50&playlistId=${id}&key=AIzaSyCuv_16onZRx3qHDStC-FUp__A6si-fStw`;
+  getFeedURL({id = this.props.defaultPlaylistId, pageToken, maxResults = 50}) {
+    let url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails,status&maxResults=${maxResults}&playlistId=${id}&key=AIzaSyCuv_16onZRx3qHDStC-FUp__A6si-fStw`;
     if (pageToken){
       url += '&pageToken=' + pageToken;
     }
@@ -66,7 +67,7 @@ class App extends Component {
           }));
 
           items.reverse();
-
+          console.log(items);
           this.setState({
             items: items,
             nextPageToken: data.nextPageToken,
@@ -77,6 +78,41 @@ class App extends Component {
         // if (data.error && data.error.message){
         //   console.error(data.error.message);
         // }
+      })
+      .catch(err => console.error(this.props.url, err.toString()))
+  }
+
+  fetchAllData(url) {
+    // console.log('fetchData, url: ', url);
+
+    // let items = [];
+
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        // console.log(data);
+
+        if (data.nextPageToken){
+          this.temp_items = data.items;
+          this.fetchAllData(this.getFeedURL({pageToken: data.nextPageToken}));
+        }else{
+          this.temp_items = [...this.temp_items, ...data.items];
+
+          let items = this.temp_items.map((item) => ({
+            date: moment( item.snippet.publishedAt ).format("MMM Do, YYYY"),
+            description: item.snippet.description,
+            id: item.contentDetails.videoId,
+            thumbnail: item.snippet.thumbnails.high.url,
+            title: item.snippet.title,
+            slug: this.generateSlug(item.snippet.title)
+          }));
+
+          items.reverse();
+
+          this.setState({
+            items: items
+          });
+        }
       })
       .catch(err => console.error(this.props.url, err.toString()))
   }
@@ -113,7 +149,8 @@ class App extends Component {
       playlistId: this.props.defaultPlaylistId
     })
 
-    this.fetchData(this.getFeedURL({}));
+    //this.fetchData(this.getFeedURL({}));
+    this.fetchAllData(this.getFeedURL({}));
 
     // this.fetchData(this.getFeedURL({
     //   playlistId: this.props.defaultPlaylistId
@@ -123,7 +160,7 @@ class App extends Component {
   }
 
   render() {
-    console.log('App render');
+    // console.log('App render');
     const { items } = this.state;
 
     return (
